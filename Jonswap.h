@@ -34,6 +34,7 @@ void Jonswap<T>::computeSpectrum(){
     T sigma;
     T A;
     T S_temp;
+    S.reserve(omega.size());
 
     // std::cout << pow(omega[0], -(T)5) << '\n';
     for (int i=0; i<omega.size(); i++){
