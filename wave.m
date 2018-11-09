@@ -15,11 +15,12 @@ tend = 30;
 nt = 300;
 t = linspace(0,tend,nt);
 g = 9.81;
+makeMovie = 0;
 
 %%  Jonswap by somebody else
 [ Somega, Amp, Phase ] = JONSWAP(omega, Hs, T, nTheta);
 % f = 1/(2*pi)*cos(theta).^2;   % Faltinsen directional distribution
-x = 0.8;
+x = 0.3;
 f = 1/(2*pi)*(1-x^2)./(1 - 2*x*cos(theta) + x^2);   % Poisson directional distribution
 S = (ones(nTheta,1)*Somega).*(f'*ones(1,nOmega));
 
@@ -51,30 +52,32 @@ end
 
 %%
 % figure('position',[500, 500, 800, 600])
-figure
-%F(loops) = struct('cdata',[],'colormap',[]);
-VidName = ['Hs', num2str(Hs), 'T', num2str(T), '.avi'];
-v = VideoWriter(VidName);
-open(v);
-for j = 1:nt
-    surf(X,Y,zeta(:,:,j))
-    shading interp
-    colormap winter
-    axis equal
-    axis tight
-    title(['t = ', num2str(t(j),3)])
-    colorbar
-    xlabel('x')
-    ylabel('y')
-    zlabel('\zeta')
-    xlim([0, max(max(X))])
-    ylim([0, max(max(Y))])
-    zlim([-Hs/2, Hs/2]*1.2)
-    caxis([-Hs/2, Hs/2]*1.2)
-    drawnow
-    frame = getframe(gcf);
-    writeVideo(v, frame);
+if (makeMovie)
+    figure
+    %F(loops) = struct('cdata',[],'colormap',[]);
+    VidName = ['Hs', num2str(Hs), 'T', num2str(T), '.avi'];
+    v = VideoWriter(VidName);
+    open(v);
+    for j = 1:nt
+        surf(X,Y,zeta(:,:,j))
+        shading interp
+        colormap winter
+        axis equal
+        axis tight
+        title(['t = ', num2str(t(j),3)])
+        colorbar
+        xlabel('x')
+        ylabel('y')
+        zlabel('\zeta')
+        xlim([0, max(max(X))])
+        ylim([0, max(max(Y))])
+        zlim([-Hs/2, Hs/2]*1.2)
+        caxis([-Hs/2, Hs/2]*1.2)
+        drawnow
+        frame = getframe(gcf);
+        writeVideo(v, frame);
+    end
+    
+    close(v);
 end
-
-close(v);
 
