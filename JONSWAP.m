@@ -1,16 +1,16 @@
 function [ S, Amp, Phase ] = JONSWAP( Ohm, Hs, Tp, nTheta)
 %JONSWAP - Calculates the wave spectrum values for a JONSWAP spectrum
 
-wp = 2*pi/Tp;
+wp = 5.24/Tp;
 Gamma = 3.3;
  for x = 1:length(Ohm)
-     if Ohm(x)<wp
+     if Ohm(x) < wp
          Sigma = 0.07;
      else
          Sigma = 0.09;
      end
      A = exp(-((Ohm(x)/wp-1)/(Sigma*sqrt(2)))^2);
-     S(x) = 320*Hs^2*Ohm(x)^-5/Tp^4*exp(-1950*Ohm(x)^-4/Tp^4)*Gamma^A;
+     S(x) = 155*Hs^2*Ohm(x)^-5/Tp^4*exp(-944*Ohm(x)^-4/Tp^4)*Gamma^A;
  end
 
  % Determine the frequency step from the frequency vector. Note that the
