@@ -22,19 +22,8 @@ Jonswap<T>::Jonswap(int nOmega, T Hs_in, T Tm_in){
     Tm = Tm_in;
 
     // Compute omega
-    auto linspace = [=](T a, T b, int n){
-        std::vector<T> arr;
-        T step = (b-a) / (n-1);
-        while (a<=b){
-            arr.push_back(a);
-            a += step;
-        }
-        return arr;
-    };
-    omega = linspace(0.0001, 2*PI, nOmega);
-    // for (auto val: omega){
-    //     std::cout << val << '\n';
-    // }
+    omega = linspace<T>(0.0001, 2*PI, nOmega);
+
     this->computeSpectrum();
 }
 
@@ -65,9 +54,5 @@ template<typename T>
 std::vector<T> Jonswap<T>::getSpectrum(){
     return S;
 }
-
-
-
-
 
 #endif
