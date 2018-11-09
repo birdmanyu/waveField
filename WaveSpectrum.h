@@ -9,8 +9,8 @@ private:
     T Hs;   // Significant wave height
     T Tm;   // Mean period
 public:
-    virtual T computeSpectrum() = 0;
-    virtual T getSpectrum() = 0;
+    virtual void computeSpectrum() = 0;
+    virtual std::vector<T> getSpectrum() = 0;
 };
 
 #endif
