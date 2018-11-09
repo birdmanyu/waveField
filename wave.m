@@ -48,19 +48,20 @@ for k = 1:nt
     drawnow
 end
 
-%%  Other directional spectrum
-% x = 0.2;
-% p = 1/(2*pi)*(1-x^2)./(1 - 2*x*cos(theta) + x^2);
 
 %%
-figure('position',[500, 500, 800, 600])
-loops = nt;
-F(loops) = struct('cdata',[],'colormap',[]);
-
-for j = 1:loops
+% figure('position',[500, 500, 800, 600])
+figure
+%F(loops) = struct('cdata',[],'colormap',[]);
+VidName = ['Hs', num2str(Hs), 'T', num2str(T), '.avi'];
+v = VideoWriter(VidName);
+open(v);
+for j = 1:nt
     surf(X,Y,zeta(:,:,j))
     shading interp
+    colormap winter
     axis equal
+    axis tight
     title(['t = ', num2str(t(j))])
     colorbar
     xlabel('x')
@@ -68,18 +69,12 @@ for j = 1:loops
     zlabel('\zeta')
     xlim([0, max(max(X))])
     ylim([0, max(max(Y))])
-    zlim([-Hs/2, Hs/2]*1.3)
-    caxis([-Hs/2, Hs/2]*1.3)
-    annotation('textbox',...
-    [0.083716049382716 0.642168674698799 0.33 0.07],...
-    'String',{['Significant wave height: $H = $ ', num2str(Hs), 'm Mean period: $T_1 = $ ', num2str(T), 's']},...
-    'LineStyle','none',...
-    'Interpreter','latex',...
-    'FontSize',12,...
-    'FitBoxToText','off');
+    zlim([-Hs/2, Hs/2]*1.2)
+    caxis([-Hs/2, Hs/2]*1.2)
     drawnow
-    F(j) = getframe;
+    frame = getframe(gcf);
+    writeVideo(v, frame);
 end
 
-
+close(v);
 
