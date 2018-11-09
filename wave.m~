@@ -1,0 +1,27 @@
+clc;
+clear all;
+close all;
+
+nOmega = 100;
+nTheta = 50;
+omega = linspace(0, 2*pi, nOmega);
+theta = linspace(-pi/2, pi/2, nTheta);
+dOmega = 2*pi/(nOmega-1);
+dTheta = pi/(nTheta-1);
+Hs = 2;
+T = 7;
+[X, Y] = meshgrid(1:100,1:100);
+t = 0.01;
+g = 9.81;
+
+%%  Jonswap by somebody else
+[ Somega, Amp, Phase ] = JONSWAP(omega, Hs, T, nTheta);
+f = 2/pi*cos(theta).^2;
+S = (ones(nTheta,1)*Somega).*(f'*ones(1,nOmega));
+
+%%  Compute zeta
+omegaAll = ones(nTheta,1)*omega;
+thetaAll = f'*ones(1,nOmega);
+zeta = 2*S*dOmega*dTheta.*sin(omegaAll*t - omegaAll.^2/g.*cos())
+
+
