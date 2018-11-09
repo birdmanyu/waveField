@@ -62,7 +62,7 @@ for j = 1:nt
     colormap winter
     axis equal
     axis tight
-    title(['t = ', num2str(t(j))])
+    title(['t = ', num2str(t(j),3)])
     colorbar
     xlabel('x')
     ylabel('y')
