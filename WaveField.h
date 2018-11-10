@@ -8,27 +8,42 @@ private:
     int ny;     // number of vertices in the y-direction
     T Lx;
     T Ly;
+    std::vector<T> x;
+    std::vector<T> y;
     std::vector<T> zeta;
-
+    T tend;
+    int numT;
 
 public:
-    WaveField(int nx_in, int, ny_in, T Lx_in, T ly_in, WaveSpectrum<T> &S, DirectionalSpectrum<T> &D);
+    WaveField(int nx_in, int, ny_in, T Lx_in, T Ly_in, T tend_in, int numT_in, WaveSpectrum<T> &S, DirectionalSpectrum<T> &D);
     // void setWaveSpectrum();
     // void setDirectionalSpectrum();
     void propagate(T time);
-    void printZeta();
+    //void printZeta();
 };
 
 template<typename T>
-WaveField<T>::WaveField(int nx_in, int, ny_in, T Lx_in, T ly_in, WaveSpectrum<T> &S, DirectionalSpectrum<T> &D){
+WaveField<T>::WaveField(int nx_in, int, ny_in, T Lx_in, T Ly_in, T tend_in, int numT_in, WaveSpectrum<T> &S, DirectionalSpectrum<T> &D){
     nx = nx_in;
     ny = ny_in;
     Lx = Lx_in;
     Ly = Ly_in;
+    tend = tend_in;
+    numT = numT_in;
     zeta.reserve(nx*ny);
+    x = linspace<T>((T)-Lx/2, Lx/2, nx);
+    y = linspace<T>((T)0, Ly, ny);
+
+
 
     // this->setWaveSpectrum(S);
     // this->setDirectionalSpectrum(D);
+}
+
+template<typename T>
+WaveField<T>::propagate(){
+    t = linspace<T>((T)0, tend, numT);
+
 }
 
 // template<typename T>
