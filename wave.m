@@ -7,7 +7,7 @@ nTheta = 50;
 dOmega = 2*pi/(nOmega-1);
 dTheta = pi/(nTheta-1);
 omega = linspace(0.0001, 2*pi, nOmega);
-theta = linspace(0, 2*pi, nTheta);
+theta = linspace(-pi/2, pi/2, nTheta);
 Hs = 5.6;
 T = 7.1;
 [X, Y] = meshgrid(1:100,1:100);
@@ -19,9 +19,9 @@ makeMovie = 0;
 
 %%  Jonswap by somebody else
 [ Somega, Amp, Phase ] = JONSWAP(omega, Hs, T, nTheta);
-% f = 1/(2*pi)*cos(theta).^2;   % Faltinsen directional distribution
-x = 0.3;
-f = 1/(2*pi)*(1-x^2)./(1 - 2*x*cos(theta) + x^2);   % Poisson directional distribution
+f = 2/(pi)*cos(theta).^2;   % Faltinsen directional distribution
+% x = 0.3;
+% f = 1/(2*pi)*(1-x^2)./(1 - 2*x*cos(theta) + x^2);   % Poisson directional distribution
 S = (ones(nTheta,1)*Somega).*(f'*ones(1,nOmega));
 
 %%  Compute zeta
@@ -71,8 +71,8 @@ if (makeMovie)
         zlabel('\zeta')
         xlim([0, max(max(X))])
         ylim([0, max(max(Y))])
-        zlim([-Hs/2, Hs/2]*1.2)
-        caxis([-Hs/2, Hs/2]*1.2)
+        zlim([-Hs/2, Hs/2]*1.4)
+        caxis([-Hs/2, Hs/2]*1.4)
         drawnow
         frame = getframe(gcf);
         writeVideo(v, frame);
