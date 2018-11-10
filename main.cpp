@@ -36,8 +36,6 @@ int main() {
         std::cout << val << '\n';
     }
 
-    std::cout << "-----------------------" << '\n';
-    // auto v = dispersion.getWaveNumber();
 
 
     return 0;

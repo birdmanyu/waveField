@@ -23,13 +23,13 @@ DeepWaterDispersion<T>::DeepWaterDispersion(std::vector<T> omega_in){
 template<typename T>
 void DeepWaterDispersion<T>::computeWaveNumber(std::vector<T> omega_in){
     k.reserve(omega_in.size());
-    for (auto val: omega_in){
+    for (auto &val: omega_in){
         k.push_back(pow(val, (T)2)/G);
     }
 }
 
 template<typename T>
-std::vector<T> DeepWaterDispersion<T>::getWaveNumber(){
+std::vector<T> DeepWaterDispersion<T>::getWaveNumber() {
     return k;
 }
 
