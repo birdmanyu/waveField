@@ -6,6 +6,7 @@
 #include "Jonswap.h"
 #include "DirectionalDistribution.h"
 #include "PoissonDirection.h"
+#include "SimpleDirection.h"
 #include "Dispersion.h"
 #include "DeepWaterDispersion.h"
 
@@ -18,10 +19,8 @@ int main() {
     int nTheta = 1000;
     double para = 0.2;
     Jonswap<double> spectrum(nOmega, Hs, Tm);
-    PoissonDirection<double> direction(nTheta, para);
+    SimpleDirection<double> direction(nTheta, para);
     DeepWaterDispersion<double> dispersion(spectrum.getOmega());
-
-
 
     // for (auto val: spectrum.getSpectrum()){
     //     std::cout << val << '\n';
