@@ -13,6 +13,7 @@ public:
     PoissonDirection(int nTheta, T para_in);
     void computeDistribution();
     std::vector<T> getDistribution();
+    std::vector<T> getTheta(){return theta;}
 };
 
 

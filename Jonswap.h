@@ -13,6 +13,7 @@ public:
     Jonswap(int nOmega, T Hs_in, T Tm_in);
     void computeSpectrum();
     std::vector<T> getSpectrum();
+    std::vector<T> getOmega(){return omega;}
 };
 
 /*--------------------  Implementation -----------------*/
