@@ -12,7 +12,7 @@
 
 
 int main() {
-    double Hs = 5.6;
+    double Hs = 6.6;
     double Tm = 7.1;
     int nOmega = 1000;
     int nTheta = 1000;
