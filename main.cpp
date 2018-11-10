@@ -21,20 +21,22 @@ int main() {
     PoissonDirection<double> direction(nTheta, para);
     DeepWaterDispersion<double> dispersion(spectrum.getOmega());
 
-    for (auto val: spectrum.getSpectrum()){
-        std::cout << val << '\n';
-    }
 
-    std::cout << "-----------------------" << '\n';
 
-    for (auto val: direction.getDistribution()){
-        std::cout << val << '\n';
-    }
-
-    std::cout << "-----------------------" << '\n';
-    for (auto val: dispersion.getWaveNumber()){
-        std::cout << val << '\n';
-    }
+    // for (auto val: spectrum.getSpectrum()){
+    //     std::cout << val << '\n';
+    // }
+    //
+    // std::cout << "-----------------------" << '\n';
+    //
+    // for (auto val: direction.getDistribution()){
+    //     std::cout << val << '\n';
+    // }
+    //
+    // std::cout << "-----------------------" << '\n';
+    // for (auto val: dispersion.getWaveNumber()){
+    //     std::cout << val << '\n';
+    // }
 
 
 
