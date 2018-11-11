@@ -31,10 +31,10 @@ template<typename T>
 void RectangleDomain<T>::setXY(){
 
     // Set the x-coordinate
-    x = linspace<T>((T)-Lx/2, Lx/2, nx);
+    x = linspace<T>((T)-Lx/2, (T)Lx/2, nx);
     std::vector<T> v_temp;
     for (int i = 0; i < ny-1; i++){
-        v_temp = linspace<T>((T)-Lx/2, Lx/2, nx);
+        v_temp = linspace<T>((T)-Lx/2, (T)Lx/2, nx);
         x.insert(x.end(), v_temp.begin(), v_temp.end());
     }
 

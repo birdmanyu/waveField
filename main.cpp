@@ -17,12 +17,17 @@
 int main() {
     double Hs = 6.6;
     double Tm = 7.1;
-    int nOmega = 1000;
-    int nTheta = 1000;
+    int nOmega = 100;
+    int nTheta = 100;
+    int nx = 101;
+    int ny = 101;
+    double Lx = 300;
+    double Ly = 300;
+
     Jonswap<double> spectrum(nOmega, Hs, Tm);
     SimpleDirection<double> direction(nTheta);
     DeepWaterDispersion<double> dispersion(spectrum.getOmega());
-    RectangleDomain<double> domain((int)10, (int)10, (double)1, (double)1);
+    RectangleDomain<double> domain(nx, ny, Lx, Ly);
 
     for (auto val: domain.getX()){
         std::cout << val << '\n';
