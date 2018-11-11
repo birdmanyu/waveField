@@ -2,7 +2,7 @@
 #define DOMAIN_H
 
 template<typename T>
-class Domain{
+class RectangleDomain: public Domain<T>{
 private:
     std::vector<T> x;
     std::vector<T> y;
@@ -10,7 +10,10 @@ private:
     int ny;
 
 public:
-    virtual void setXY() = 0;
+    RectangleDomain(int nx_in, ny_in);
+    void setXY();
 };
+
+
 
 #endif
