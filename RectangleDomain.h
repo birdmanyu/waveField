@@ -29,7 +29,7 @@ RectangleDomain<T>::RectangleDomain(int nx_in, int ny_in, T Lx_in, T Ly_in){
 
 template<typename T>
 void RectangleDomain<T>::setXY(){
-
+    // Row-majored vertices arrangements
     // Set the x-coordinate
     x = linspace<T>((T)-Lx/2, (T)Lx/2, nx);
     std::vector<T> v_temp;
