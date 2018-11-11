@@ -9,6 +9,8 @@
 #include "SimpleDirection.h"
 #include "Dispersion.h"
 #include "DeepWaterDispersion.h"
+#include "Domain.h"
+#include "RectangleDomain.h"
 
 
 
@@ -21,6 +23,13 @@ int main() {
     Jonswap<double> spectrum(nOmega, Hs, Tm);
     SimpleDirection<double> direction(nTheta, para);
     DeepWaterDispersion<double> dispersion(spectrum.getOmega());
+    RectangleDomain<double> domain((int)10, (int)10, (double)1, (double)1);
+
+    for (auto val: domain.getX()){
+        std::cout << val << '\n';
+    }
+    std::cout << "-----------------------" << '\n';
+    std::cout << domain.getX().size() << '\n';
 
     // for (auto val: spectrum.getSpectrum()){
     //     std::cout << val << '\n';
