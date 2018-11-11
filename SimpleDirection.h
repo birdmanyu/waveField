@@ -7,10 +7,9 @@ class SimpleDirection: public DirectionalDistribution<T>{
 private:
     std::vector<T> theta;   // wave angle
     std::vector<T> f; // Directional distribution function
-    T para; // controlling parameter of wave angel distribution
 
 public:
-    SimpleDirection(int nTheta, T para_in);
+    SimpleDirection(int nTheta);
     void computeDistribution();
     std::vector<T> getDistribution();
     std::vector<T> getTheta(){return theta;}
@@ -19,8 +18,7 @@ public:
 
 // Implementations
 template<typename T>
-SimpleDirection<T>::SimpleDirection(int nTheta, T para_in){
-    para = para_in;
+SimpleDirection<T>::SimpleDirection(int nTheta){
     theta = linspace<T>(-PI/2, PI/2, nTheta);
     this->computeDistribution();
 }

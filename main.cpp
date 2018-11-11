@@ -19,9 +19,8 @@ int main() {
     double Tm = 7.1;
     int nOmega = 1000;
     int nTheta = 1000;
-    double para = 0.2;
     Jonswap<double> spectrum(nOmega, Hs, Tm);
-    SimpleDirection<double> direction(nTheta, para);
+    SimpleDirection<double> direction(nTheta);
     DeepWaterDispersion<double> dispersion(spectrum.getOmega());
     RectangleDomain<double> domain((int)10, (int)10, (double)1, (double)1);
 
